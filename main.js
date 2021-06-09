@@ -1,6 +1,6 @@
-let form = document.getElementById("addForm");
-let itemList = document.getElementById("items");
-let filter = document.getElementById("filter");
+var form = document.getElementById("addForm");
+var itemList = document.getElementById("items");
+var filter = document.getElementById("filter");
 
 // Form submit event
 form.addEventListener("submit", addItem);
@@ -13,34 +13,37 @@ filter.addEventListener("keyup", filterItems);
 function addItem(e) {
   e.preventDefault();
 
-  //  Get input value
-  let newItem = document.getElementById("item").value;
+  // Get input value
+  var newItem = document.getElementById("item").value;
 
   // Create new li element
-  let li = document.createElement("li");
+  var li = document.createElement("li");
   // Add class
   li.className = "list-group-item";
   // Add text node with input value
   li.appendChild(document.createTextNode(newItem));
 
-  //Create del button element
-  let deleteBtn = documentcreateElement("button");
+  // Create del button element
+  var deleteBtn = document.createElement("button");
 
   // Add classes to del button
-  deleteBtn.className = "btn btn-danger btn-sm float-rigth delete";
+  deleteBtn.className = "btn btn-danger btn-sm float-right delete";
 
   // Append text node
-  deleteBtn.appendChild(document.createTextNode("x"));
+  deleteBtn.appendChild(document.createTextNode("X"));
 
-  // Append Button to li
+  // Append button to li
   li.appendChild(deleteBtn);
+
+  // Append li to list
+  itemList.appendChild(li);
 }
 
-// Remove Item
+// Remove item
 function removeItem(e) {
   if (e.target.classList.contains("delete")) {
-    if (confirm("Are you sure?")) {
-      let li = e.target.parentElement;
+    if (confirm("Are You Sure?")) {
+      var li = e.target.parentElement;
       itemList.removeChild(li);
     }
   }
@@ -49,16 +52,16 @@ function removeItem(e) {
 // Filter Items
 function filterItems(e) {
   // convert text to lowercase
-  let text = e.target.value.toLowerCase();
+  var text = e.target.value.toLowerCase();
   // Get lis
-  let items = itemList.getElementsByTagName(li);
+  var items = itemList.getElementsByTagName("li");
   // Convert to an array
   Array.from(items).forEach(function (item) {
-    let itemName = item.firstChild.textContent;
+    var itemName = item.firstChild.textContent;
     if (itemName.toLowerCase().indexOf(text) != -1) {
-      item.getElementsByClassName.display = "block";
+      item.style.display = "block";
     } else {
-      item.getElementsByClassName.display = "none";
+      item.style.display = "none";
     }
   });
 }
